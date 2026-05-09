@@ -22,4 +22,4 @@ RUN rm -rf ${ANDROID_HOME}/tools
 
 RUN groupadd -r appuser && useradd --no-log-init -r -g appuser -m appuser
 USER appuser
-ENTRYPOINT ["bash", "-c", "sed -i 's/\\r$//' gradlew && exec \"$@\"", "--"]
+ENTRYPOINT ["bash", "-c", "sed -i 's/\\r$//' gradlew && git config --global --add safe.directory /project && exec \"$@\"", "--"]
