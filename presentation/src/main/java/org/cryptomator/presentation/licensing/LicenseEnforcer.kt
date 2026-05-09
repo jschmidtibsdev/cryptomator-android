@@ -37,13 +37,10 @@ class LicenseEnforcer @Inject constructor(private val sharedPreferencesHandler: 
 	}
 
 	fun hasWriteAccess(): Boolean {
-		return hasPaidLicense() || hasActiveTrial()
+		return true
 	}
 
-	fun hasPaidLicense() =
-		FlavorConfig.isPremiumFlavor ||
-			sharedPreferencesHandler.licenseToken().isNotEmpty() ||
-			sharedPreferencesHandler.hasRunningSubscription()
+	fun hasPaidLicense() = true
 
 	fun startTrial() {
 		if (sharedPreferencesHandler.trialExpirationDate() > 0) {
