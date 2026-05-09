@@ -20,5 +20,6 @@ RUN yes | sdkmanager --licenses --sdk_root="${ANDROID_HOME}"
 
 RUN rm -rf ${ANDROID_HOME}/tools
 
-RUN groupadd -r appuser && useradd --no-log-init -r -g appuser appuser
+RUN groupadd -r appuser && useradd --no-log-init -r -g appuser -m appuser
 USER appuser
+ENTRYPOINT ["bash", "-c", "sed -i 's/\\r$//' gradlew && exec \"$@\"", "--"]
